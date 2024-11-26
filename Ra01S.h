@@ -377,7 +377,12 @@ class SX126x {
     void     SetTxPower(int8_t txPowerInDbm);
     uint32_t GetRandomNumber(void);
     void     DebugPrint(bool enable);
-
+    void     WriteCommand(uint8_t cmd, uint8_t* data, uint8_t numBytes, bool waitForBusy = true);
+    uint8_t  WriteCommand2(uint8_t cmd, uint8_t* data, uint8_t numBytes, bool waitForBusy = true);
+    void     ReadCommand(uint8_t cmd, uint8_t* data, uint8_t numBytes, bool waitForBusy = true);
+    void     SetSleep(uint8_t mode);
+    void     SetStandby(uint8_t mode);
+    void     Wakeup(void);
 
   private:    
     uint8_t  PacketParams[6] = {0};
@@ -393,8 +398,6 @@ class SX126x {
     void     SetDio3AsTcxoCtrl(float voltage, uint32_t delay);
     void     SetDio2AsRfSwitchCtrl(uint8_t enable);
     void     Reset(void);
-    void     SetSleep(uint8_t mode);
-    void     SetStandby(uint8_t mode);
     void     SetRfFrequency(uint32_t frequency);
     void     Calibrate(uint8_t calibParam);
     void     CalibrateImage(uint32_t frequency);
@@ -417,15 +420,11 @@ class SX126x {
     void     SetTx(uint32_t timeoutInMs);
     uint8_t  GetRssiInst();
     void     GetRxBufferStatus(uint8_t *payloadLength, uint8_t *rxStartBufferPointer);
-    void     Wakeup(void);
     void     WaitForIdle(unsigned long timeout, char *text, bool stop);
     uint8_t  ReadBuffer(uint8_t *rxData, uint8_t maxLen);
     void     WriteBuffer(uint8_t *txData, uint8_t txDataLen);
     void     WriteRegister(uint16_t reg, uint8_t* data, uint8_t numBytes, bool waitForBusy = true);
     void     ReadRegister(uint16_t reg, uint8_t* data, uint8_t numBytes, bool waitForBusy = true);
-    void     WriteCommand(uint8_t cmd, uint8_t* data, uint8_t numBytes, bool waitForBusy = true);
-    uint8_t  WriteCommand2(uint8_t cmd, uint8_t* data, uint8_t numBytes, bool waitForBusy = true);
-    void     ReadCommand(uint8_t cmd, uint8_t* data, uint8_t numBytes, bool waitForBusy = true);
 };
 
 
